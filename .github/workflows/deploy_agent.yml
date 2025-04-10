@@ -16,7 +16,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Build DACPAC
-        run: msbuild ${{ github.workspace }}/Agent.sqlproj /p:Configuration=Debug
+        run: msbuild ${{ github.workspace }}/Agent/Agent.sqlproj /p:Configuration=Debug
 
       - name: Deploy
         shell: powershell

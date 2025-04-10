@@ -27,7 +27,7 @@ jobs:
           & $sqlPackagePath `
             /Action:Publish `
             /SourceFile:"${{ github.workspace }}/bin/Debug/Agent.dacpac" `
-            /TargetConnectionString:"${{ secrets.AGENT_PROD_CONNECTION_STRING }}" `
+            /TargetConnectionString:"${{ secrets.COMPARE_AGENT_CONNECTION_STRING }}" `
             /p:BlockOnPossibleDataLoss=False `
             /p:ScriptDatabaseOptions=False `
             /p:DropObjectsNotInSource=False

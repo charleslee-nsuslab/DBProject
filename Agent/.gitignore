@@ -1,0 +1,8 @@
+# Ignore everything inside sqlpackage
+/bin/*
+/obj/*
+/.vs/*
+/Agent.sln
+/Agent.sqlproj.user
+
+# Except the files we need

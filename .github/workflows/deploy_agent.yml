@@ -1,0 +1,34 @@
+name: Deploy Agent DB
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build DACPAC
+        run: msbuild Agent.sqlproj /p:Configuration=Debug
+
+      - name: Deploy
+        shell: powershell
+        run: |
+          $sqlPackagePath = (Get-Command SqlPackage.exe).Source
+          Write-Host "Using SqlPackage.exe from: $sqlPackagePath"
+
+          & $sqlPackagePath `
+            /Action:Publish `
+            /SourceFile:"${{ github.workspace }}/bin/Debug/Agent.dacpac" `
+            /TargetConnectionString:"${{ secrets.AGENT_PROD_CONNECTION_STRING }}" `
+            /p:BlockOnPossibleDataLoss=False `
+            /p:ScriptDatabaseOptions=False `
+            /p:DropObjectsNotInSource=False
+          

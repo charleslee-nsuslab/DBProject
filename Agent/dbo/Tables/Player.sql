@@ -8,12 +8,16 @@
     [SiteId]        BIGINT           NOT NULL,
     [CountryCode]   NVARCHAR (2)     NOT NULL,
     [RowVersion]    ROWVERSION       NULL,
+    [Nickname]      NVARCHAR (64)    NULL,
     CONSTRAINT [PK_Player] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Player_AgentCode_AgentCodeId] FOREIGN KEY ([AgentCodeId]) REFERENCES [dbo].[AgentCode] ([Id]),
     CONSTRAINT [FK_Player_Brand_BrandId] FOREIGN KEY ([BrandId]) REFERENCES [dbo].[Brand] ([Id]),
     CONSTRAINT [FK_Player_Country_CountryCode] FOREIGN KEY ([CountryCode]) REFERENCES [dbo].[Country] ([Code]),
     CONSTRAINT [FK_Player_Site_SiteId] FOREIGN KEY ([SiteId]) REFERENCES [dbo].[Site] ([Id])
 );
+
+
+
 
 
 GO

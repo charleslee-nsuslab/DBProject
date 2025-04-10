@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[AgentCodeMigration] (
     [Id]                BIGINT        IDENTITY (1, 1) NOT NULL,
-    [ParentAgentCodeId] BIGINT        NOT NULL,
+    [ParentAgentCodeId] BIGINT        NULL,
     [ChildAgentCodeId]  BIGINT        NOT NULL,
     [State]             INT           NOT NULL,
     [CreatedAt]         DATETIME2 (7) NOT NULL,
@@ -10,6 +10,8 @@
     [IsImmediately]     BIT           NOT NULL,
     CONSTRAINT [PK_AgentCodeMigration] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
 
 GO

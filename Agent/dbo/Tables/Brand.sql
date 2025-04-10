@@ -9,10 +9,13 @@
     [CreatedAt]                DATETIME2 (7)  NOT NULL,
     [UpdatedAt]                DATETIME2 (7)  NOT NULL,
     [RegionType]               NVARCHAR (50)  NOT NULL,
-    [GGNetworkBrandName]       NVARCHAR (256) CONSTRAINT [DF_Brand_GGNetworkBrandName] DEFAULT ('') NOT NULL,
-    [PlayMigrationImmediately] BIT            NOT NULL,
+    [GGNetworkBrandName]       NVARCHAR (256) DEFAULT (N'') NOT NULL,
+    [PlayMigrationImmediately] BIT            DEFAULT (CONVERT([bit],(0))) NOT NULL,
     CONSTRAINT [PK_Brand] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
+
 
 
 GO

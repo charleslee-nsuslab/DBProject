@@ -23,15 +23,18 @@
     [DefaultDeductionPercent]            DECIMAL (18, 2)  NOT NULL,
     [DeductionPercent]                   DECIMAL (18, 2)  NOT NULL,
     [UpdatedAt]                          DATETIME2 (7)    NOT NULL,
-    [IsIgnoreCngrDifferenceContribution] BIT              NOT NULL,
-    [IsDeleted]                          BIT              NOT NULL,
-    [WalletAccountId]                    UNIQUEIDENTIFIER NOT NULL,
+    [IsIgnoreCngrDifferenceContribution] BIT              DEFAULT (CONVERT([bit],(0))) NOT NULL,
+    [IsDeleted]                          BIT              DEFAULT (CONVERT([bit],(0))) NOT NULL,
+    [WalletAccountId]                    UNIQUEIDENTIFIER DEFAULT ('00000000-0000-0000-0000-000000000000') NOT NULL,
     CONSTRAINT [PK_AgentCodeBrand] PRIMARY KEY CLUSTERED ([AgentCodeId] ASC, [BrandId] ASC),
     CONSTRAINT [FK_AgentCodeBrand_AgentCode_AgentCodeId] FOREIGN KEY ([AgentCodeId]) REFERENCES [dbo].[AgentCode] ([Id]),
     CONSTRAINT [FK_AgentCodeBrand_Brand_BrandId] FOREIGN KEY ([BrandId]) REFERENCES [dbo].[Brand] ([Id]),
     CONSTRAINT [FK_AgentCodeBrand_Player_ConnectedPlayerId] FOREIGN KEY ([ConnectedPlayerId]) REFERENCES [dbo].[Player] ([Id]),
     CONSTRAINT [FK_AgentCodeBrand_RevenuePlanTemplate_RevenuePlanId] FOREIGN KEY ([RevenuePlanId]) REFERENCES [dbo].[RevenuePlanTemplate] ([Id])
 );
+
+
+
 
 
 GO
